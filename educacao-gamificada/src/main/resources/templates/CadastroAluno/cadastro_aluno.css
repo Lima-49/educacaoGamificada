@@ -1,0 +1,15 @@
+.container {
+    margin-top: 50px;
+}
+
+.plano-banner {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Adicionado para uma transição suave */
+}
+
+.plano-banner:hover{
+    background-color: #7cb0ff;
+}

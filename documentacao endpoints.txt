@@ -1,0 +1,34 @@
+// Listar Alunos
+GET http://localhost:8080/alunos/login
+
+// Buscar Aluno por ID
+GET http://localhost:8080/alunos/{id}
+
+// Cadastrar Aluno
+POST: http://localhost:8080/alunos
+
+{
+  "alunoNome":"Vitor",
+  "alunoSenha":"12345",
+  "tipoPlano": "Basico"
+}
+
+//Logar Aluno
+POST http://localhost:8080/alunos/login
+
+{
+  "alunoNome":"Vitor",
+  "alunoSenha":"12345"
+}
+
+//Lista todos os valores da tbela cursos
+GET http://localhost:8080/cursos
+
+// Atualizar qualquer atributo da tabela cursos
+POST http://localhost:8080/cursos/updAtributo
+{
+  "alunoCurso":"Vitor",
+  "cursoQtd":"5",
+  "cursoAndamento":"",
+  "mediaFinal":0.00
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="cadastro_aluno.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+<div class="container">
+    <h2>Cadastro de Usuário</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="plano-banner" id="basico">
+                <h3>Plano Básico</h3>
+                <p>R$ 50,00/mês</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="plano-banner" id="premium">
+                <h3>Plano Premium</h3>
+                <p>R$ 100,00/mês</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <form id="cadastroForm">
+        <div class="form-group">
+            <label for="usuario">Usuário:</label>
+            <input type="text" class="form-control" id="usuario" placeholder="Digite o usuário" required>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" class="form-control" id="senha" placeholder="Digite a senha" required>
+        </div>
+        <input type="hidden" id="planoSelecionado" name="plano" value="">
+        <button type="submit" class="btn btn-primary" id="cadastroBtn">Cadastrar</button>
+    </form>
+</div>
+
+<script src="cadastro_aluno.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
