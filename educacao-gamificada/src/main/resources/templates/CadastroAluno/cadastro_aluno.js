@@ -47,7 +47,6 @@ async function cadastraAluno(){
 
         resultTEXT = await responseBD.text()
         resultCode = responseBD.status
-        console.log(resultCode )
         if (resultCode == 201){
             atualizaQtdCursos(planoSelecionado, nomeAluno)
             window.alert("Aluno Cadastrado com sucesso, retorne para a pagina de Login")
@@ -66,7 +65,6 @@ async function atualizaQtdCursos(planoSelecionado, nomeAluno){
         qtdCursos = 10
     }
 
-    console.log(JSON.stringify({ alunoCurso: nomeAluno, cursoQtd: qtdCursos, cursoAndamento: "nenhum", mediaFinal: parseFloat(21)}))
     const responseBD = await fetch('http://localhost:8080/cursos/updAtributo', {
         method: 'POST',
         headers: {
@@ -76,7 +74,6 @@ async function atualizaQtdCursos(planoSelecionado, nomeAluno){
     });
 
     resultTEXT = await responseBD.text()
-    console.log(resultTEXT)
 
 }
 

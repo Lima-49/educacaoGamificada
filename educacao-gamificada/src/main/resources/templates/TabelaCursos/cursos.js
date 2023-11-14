@@ -1,6 +1,5 @@
-// Dicionário de cursos
-
-var cursos = {
+const userName = localStorage.getItem("userName")
+const cursos = {
     1: { nome: "Curso de Desenvolvimento Web Básico", descricao: "Introdução ao desenvolvimento web com HTML, CSS e JavaScript." },
     2: { nome: "Curso de Desenvolvimento Web Avançado", descricao: "Boas praticas em desenvolvimento web e aplicação com banco de dados" },
     3: { nome: "Curso de Python Básico", descricao: "Aprenda o básico para programar em Python." },
@@ -23,45 +22,72 @@ var cursos = {
     20: { nome: "MySQL", descricao: "Como gerenciar e manipular tabelas no SQL." },
 };
 
-// Função para gerar a tabela de cursos
-function gerarTabelaCursos() {
+function gerarTabelaCursos(qtdCursos) {
     var cursosTableBody = $("#cursosTableBody");
 
-    for (var cursoId in cursos) {
-        if (cursos.hasOwnProperty(cursoId)) {
-            var curso = cursos[cursoId];
-            var newRow = $("<tr>").append(
-                $("<td>").text(cursoId),
-                $("<td>").text(curso.nome),
-                $("<td>").text(curso.descricao),
-                $("<td>").html('<button class="btn btn-success" onclick="matricular(' + cursoId + ')">Matricular</button>')
-            );
+    for (var i = 1; i <= qtdCursos; i++) {
+        var curso = cursos[i];
+        var newRow = $("<tr>").append(
+            $("<td>").text(i),
+            $("<td>").text(curso.nome),
+            $("<td>").text(curso.descricao),
+            $("<td>").html('<button class="btn btn-success" onclick="matricular(' + i + ', \'' + curso.nome + '\')">Matricular</button>')
+        );
 
-            cursosTableBody.append(newRow);
-        }
+        cursosTableBody.append(newRow);
     }
 }
 
-// Função para simular a matrícula em um curso
-function matricular(cursoId) {
-    // Simulação de uma requisição AJAX para matricular o usuário no curso
-    $.ajax({
-        type: "POST",
-        url: "/matricula",
-        data: {
-            cursoId: cursoId
+async function matricular(cursoId, cursoNome){
+
+    var data = await getByName();
+    var qtdCursos = data.cursoQtd
+    var media = data.mediaFinal
+
+    const response = await fetch('http://localhost:8080/cursos/updAtributo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        success: function(response) {
-            alert("Matrícula realizada com sucesso!");
-            // Você pode redirecionar o usuário para outra página ou fazer outras ações aqui
-        },
-        error: function(xhr, status, error) {
-            alert("Erro ao realizar a matrícula: " + error);
-        }
+        body: JSON.stringify({ alunoCurso: userName, cursoQtd: qtdCursos, cursoAndamento: cursoNome, mediaFinal: media}),
     });
+
+    if (response.ok){
+        window.alert("Aluno Matriculado com sucesso no curso " + cursoNome)
+    }
+    
 }
 
-// Chame a função para gerar a tabela ao carregar a página
-$(document).ready(function() {
-    gerarTabelaCursos();
+async function getByName() {
+    if (userName !== undefined) {
+        var response = await fetch("http://localhost:8080/cursos/" + userName, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (response.ok) {
+            var responseText = await response.text();
+            var responseJson = JSON.parse(responseText)
+
+            return responseJson;
+        } else {
+            window.alert("Problema no servidor");
+            return 0;
+        }
+    } else {
+        window.alert("Usuário não informado");
+        return 0;
+    }
+}
+
+async function getAndGenerateCursos() {
+    var data = await getByName();
+    var qtdCursos = data.cursoQtd
+    gerarTabelaCursos(qtdCursos);
+}
+
+$(document).ready(function () {
+    getAndGenerateCursos();
 });

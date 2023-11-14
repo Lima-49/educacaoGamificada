@@ -20,6 +20,7 @@ async function validLogin(){
         resultCode = responseBD.status
 
         if (resultCode == 200){
+            localStorage.setItem("userName", userName)
             window.location.href = "../TabelaCursos/cursos.html"
         }else{
             errorMsg.innerText = resultTEXT

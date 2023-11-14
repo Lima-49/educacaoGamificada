@@ -38,6 +38,11 @@ public class CursosController {
         return ResponseEntity.ok(CursosDto.converter(cursos));
     }
 
+    @GetMapping(value = "/{alunoCurso}")
+    public ResponseEntity<?> getCursoByName(@PathVariable String alunoCurso){
+        return ResponseEntity.ok(cursosRepository.findByAlunoCurso(alunoCurso).get());
+    }
+
     @PostMapping(value = "/updAtributo")
     @CrossOrigin
     public ResponseEntity<?> updAtributo(@RequestBody CursosForm form, UriComponentsBuilder uriBuilder) {
