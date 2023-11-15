@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Tabela e Modal -->
+<div class="container">
+    <h2>Alunos Cadastrados</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome Aluno</th>
+                <th>Quantidade de Cursos</th>
+                <th>Curso em Andamento</th>
+                <th>Media Final</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="cursosTableBody"></tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="notaModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Inserir Nota</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label for="notaInput">Nota:</label>
+                <input type="text" id="notaInput" class="form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="inserirNotaBtn">Inserir</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>

@@ -20,8 +20,15 @@ async function validLogin(){
         resultCode = responseBD.status
 
         if (resultCode == 200){
+
             localStorage.setItem("userName", userName)
-            window.location.href = "../TabelaCursos/cursos.html"
+            
+            if((userName == "admin") && (senha == "admin")){
+                window.location.href = "../AdminScreen/admin.html"
+            }else{
+                window.location.href = "../TabelaCursos/cursos.html"
+            }
+            
         }else{
             errorMsg.innerText = resultTEXT
             errorMsg.classList.add("text-center");
