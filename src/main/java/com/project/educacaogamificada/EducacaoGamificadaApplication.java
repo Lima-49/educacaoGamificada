@@ -15,4 +15,10 @@ public class EducacaoGamificadaApplication {
 		SpringApplication.run(EducacaoGamificadaApplication.class, args);
 	}
 
+	@RequestMapping ("/")
+	@ResponseBody
+	String home()
+	{
+		return "Hello World";
+	}
 }
