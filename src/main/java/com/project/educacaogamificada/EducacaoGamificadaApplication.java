@@ -19,6 +19,6 @@ public class EducacaoGamificadaApplication {
 	@ResponseBody
 	String home()
 	{
-		return "Hello World";
+		return "Teste";
 	}
 }
