@@ -1,4 +1,4 @@
-version: '1'
+version: '3'
 
 services:
   database:
@@ -10,12 +10,13 @@ services:
       - db-volume:/var/lib/postgresql/data
 
   api:
-    image: educacao-gamificada/educacaogamificada
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       DB_HOST: database
     ports:
       - "9090:9090"
+
 volumes:
   db-volume:
-
-
