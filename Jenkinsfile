@@ -20,6 +20,7 @@ pipeline {
     }
     stage('Run tests against the container') {
       steps {
+        sleep time: 30, unit: 'SECONDS'
         bat 'curl http://localhost:9090'
       }
     }
